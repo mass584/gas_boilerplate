@@ -1,4 +1,4 @@
 export function main() {
-  console.log("Hello World!");
-  console.log(process.env.FILE_ID);  
+  Logger.log("Hello World!");
+  Logger.log(process.env.FILE_ID);
 }
