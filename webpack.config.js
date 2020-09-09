@@ -23,6 +23,7 @@ const webpack = require('webpack');
  */
 
 const Dotenv = require('dotenv-webpack');
+const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const GasPlugin = require('gas-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -33,6 +34,7 @@ module.exports = {
 	},
 	plugins: [
 		new Dotenv(),
+		new Es3ifyPlugin(),
 		new GasPlugin(),
 		new webpack.ProgressPlugin(),
 	],
