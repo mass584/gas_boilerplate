@@ -24,23 +24,14 @@ const webpack = require('webpack');
 
 const TerserPlugin = require('terser-webpack-plugin');
 
-const workboxPlugin = require('workbox-webpack-plugin');
-
 module.exports = {
 	mode: 'development',
 	entry: {
 		'index': './src/index.ts',
 	},
-
 	plugins: [
 		new webpack.ProgressPlugin(),
-		new workboxPlugin.GenerateSW({
-			swDest: 'sw.js',
-			clientsClaim: true,
-			skipWaiting: false
-		})
 	],
-
 	module: {
 		rules: [
 			{
@@ -51,14 +42,11 @@ module.exports = {
 			}
 		]
 	},
-
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
+		extensions: ['.ts', '.js']
 	},
-
 	optimization: {
 		minimizer: [new TerserPlugin()],
-
 		splitChunks: {
 			cacheGroups: {
 				vendors: {
@@ -66,7 +54,6 @@ module.exports = {
 					test: /[\\/]node_modules[\\/]/
 				}
 			},
-
 			chunks: 'async',
 			minChunks: 1,
 			minSize: 30000,
