@@ -1,0 +1,7 @@
+{
+  "name": "gas_boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "yoshimitsu.masugata <msgtysmt@gmail.com>",
+  "license": "MIT"
+}
