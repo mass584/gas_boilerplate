@@ -1,15 +1,10 @@
-# 🚀 Welcome to your new awesome project!
+# Google Apps Scriptプロジェクト用ボイラープレート
 
-This project has been created using **webpack scaffold**, you can now run
+## 初期設定
+1. `.clasp.json` の `scriptId` を設定する。
 
-```
-npm run build
-```
-
-or
-
+## コマンド一覧
+* プロジェクトのビルド
 ```
 yarn build
 ```
-
-to bundle your application
