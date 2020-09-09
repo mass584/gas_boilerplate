@@ -28,7 +28,9 @@ const workboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	entry: {},
+	entry: {
+		'index': './src/index.ts',
+	},
 
 	plugins: [
 		new webpack.ProgressPlugin(),
