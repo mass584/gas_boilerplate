@@ -1,4 +1,6 @@
 # Google Apps Scriptプロジェクト用ボイラープレート
+Google Apps Scriptプロジェクト用のボイラープレートです。
+TypeScriptで記述します。
 
 ## 初期設定
 1. `.clasp.json` の `scriptId` を設定する。

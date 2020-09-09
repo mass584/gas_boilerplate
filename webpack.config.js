@@ -23,16 +23,18 @@ const webpack = require('webpack');
  */
 
 const Dotenv = require('dotenv-webpack');
+const GasPlugin = require('gas-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
 	entry: {
-		'index': './src/index.ts',
+		main: path.resolve(__dirname, 'src', 'index.ts'),
 	},
 	plugins: [
-		new webpack.ProgressPlugin(),
 		new Dotenv(),
+		new GasPlugin(),
+		new webpack.ProgressPlugin(),
 	],
 	module: {
 		rules: [
