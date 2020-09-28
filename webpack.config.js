@@ -30,7 +30,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
 	mode: 'development',
 	entry: {
-		main: path.resolve(__dirname, 'src', 'index.ts'),
+		app: path.resolve(__dirname, 'src', 'app.js'),
+		index: path.resolve(__dirname, 'src', 'index.ts'),
 	},
 	plugins: [
 		new Dotenv(),

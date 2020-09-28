@@ -2,10 +2,16 @@ import Ajv from 'ajv';
 
 import schema from '../schema.json';
 
-export type PostRequestBody = {
-  eventType: 'echo' | 'hello_world';
+type PostRequestBodyEcho = {
+  eventType: 'echo';
   message: string;
 };
+
+type PostRequestBodyHelloWorld = {
+  eventType: 'hello_world';
+};
+
+export type PostRequestBody = PostRequestBodyEcho | PostRequestBodyHelloWorld;
 
 export function doPost(
   e: WebAPI.PostEvent,
@@ -30,7 +36,11 @@ export function doPost(
 }
 
 function isValid(contents: string): boolean {
-  const object = JSON.parse(contents);
-  const validator = new Ajv().compile(schema);
-  return !!validator(object);
+  try {
+    const object = JSON.parse(contents);
+    const validator = new Ajv().compile(schema);
+    return validator(object) === true;
+  } catch (_) {
+    return false;
+  }
 }
