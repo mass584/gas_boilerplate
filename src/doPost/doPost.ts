@@ -1,5 +1,6 @@
 import Ajv from 'ajv';
-import fs from 'fs';
+
+import schema from '../schema.json';
 
 export type PostRequestBody = {
   eventType: 'echo' | 'hello_world';
@@ -30,7 +31,6 @@ export function doPost(
 
 function isValid(contents: string): boolean {
   const object = JSON.parse(contents);
-  const schema = JSON.parse(fs.readFileSync('../schema.json').toString());
   const validator = new Ajv().compile(schema);
   return !!validator(object);
 }

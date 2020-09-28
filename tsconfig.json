@@ -6,6 +6,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "lib": ["esnext"],
+    "resolveJsonModule": true,
     "strict": true,
     "noImplicitAny": true
   },

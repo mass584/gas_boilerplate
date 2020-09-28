@@ -41,9 +41,15 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /.(ts|tsx)?$/,
+				test: /\.(ts|tsx)$/,
 				loader: 'ts-loader',
 				exclude: [/node_modules/]
+			},
+			{
+				test: /\.json$/,
+				loader: 'json-loader',
+				exclude: [/node_modules/],
+				type: 'javascript/auto'
 			}
 		]
 	},
