@@ -1,17 +1,7 @@
 import Ajv from 'ajv';
 
-import schema from '../schema.json';
-
-type PostRequestBodyEcho = {
-  eventType: 'echo';
-  message: string;
-};
-
-type PostRequestBodyHelloWorld = {
-  eventType: 'hello_world';
-};
-
-export type PostRequestBody = PostRequestBodyEcho | PostRequestBodyHelloWorld;
+import { PostRequestBody } from '../doPost/requestBody';
+import schema from './schema.json';
 
 export function doPost(
   e: WebAPI.PostEvent,
