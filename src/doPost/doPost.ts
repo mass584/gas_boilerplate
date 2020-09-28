@@ -30,7 +30,7 @@ export function doPost(
 
 function isValid(contents: string): boolean {
   const object = JSON.parse(contents);
-  const schema = JSON.parse(fs.readFileSync('./schema.json').toString());
+  const schema = JSON.parse(fs.readFileSync('../schema.json').toString());
   const validator = new Ajv().compile(schema);
   return !!validator(object);
 }
