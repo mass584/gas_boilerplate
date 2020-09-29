@@ -28,7 +28,7 @@ export function doPost(
 function isValid(contents: string): boolean {
   try {
     const object = JSON.parse(contents);
-    const validator = new Ajv().compile(schema);
+    const validator = new Ajv().compile(schema.definitions.PostRequestBody);
     return validator(object) === true;
   } catch (_) {
     return false;

@@ -9,14 +9,3 @@ Google Apps Scriptプロジェクト用のボイラープレートです。
 // ファイルID
 FILE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
-
-## JSON Schemaの生成
-1. `typescript-json-schema`の導入
-```
-npm install -g typescript-json-schema 
-```
-
-2. JSON Schemaの生成
-```
-typescript-json-schema --ignoreErrors tsconfig.json PostRequestBody > ./src/schema.json
-```
