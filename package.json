@@ -10,6 +10,7 @@
     "@types/eslint": "^7.2.2",
     "@types/eslint-plugin-prettier": "^3.1.0",
     "@types/google-apps-script": "^1.0.16",
+    "@types/moment": "^2.13.0",
     "@types/prettier": "^2.1.0",
     "@types/rimraf": "^3.0.0",
     "@types/terser-webpack-plugin": "^4.1.0",
@@ -39,11 +40,12 @@
     "workbox-webpack-plugin": "^5.1.3"
   },
   "scripts": {
-    "build": "run-s build:json_schema build:copy:* build:webpack",
-    "build:copy": "run-p build:copy:*",
-    "build:copy:appsscript.json": "cpx \"src/appsscript.json\" dist/",
+    "build:dev": "run-s build:json_schema build:appsscript build:dev:webpack",
+    "build:prod": "run-s build:json_schema build:appsscript build:prod:webpack",
     "build:json_schema": "quicktype src/doPost/requestBody.ts -o src/doPost/schema.json --lang schema",
-    "build:webpack": "webpack",
+    "build:appsscript": "cpx \"src/appsscript.json\" dist/",
+    "build:dev:webpack": "webpack --config webpack.dev.js",
+    "build:prod:webpack": "webpack --config webpack.prod.js",
     "clean": "run-p clean:*",
     "clean:copy": "run-p clean:copy:*",
     "clean:copy:appsscript.json": "rimraf dist/appsscript.json",
@@ -52,6 +54,7 @@
     "lint": "yarn eslint src/**/*"
   },
   "dependencies": {
-    "ajv": "^6.12.5"
+    "ajv": "^6.12.5",
+    "moment": "^2.29.0"
   }
 }

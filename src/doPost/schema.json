@@ -1,44 +1,35 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "PostRequestBody": {
-            "anyOf": [
-                {
-                    "type": "object",
-                    "properties": {
-                        "eventType": {
-                            "type": "string",
-                            "enum": [
-                                "echo"
-                            ],
-                            "title": "eventType"
-                        },
-                        "message": {
-                            "type": "string",
-                            "title": "message"
-                        }
-                    },
-                    "required": [
-                        "eventType",
-                        "message"
-                    ]
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "eventType": {
-                            "type": "string",
-                            "enum": [
-                                "hello_world"
-                            ],
-                            "title": "eventType"
-                        }
-                    },
-                    "required": [
-                        "eventType"
-                    ]
-                }
-            ]
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "PostRequestBody": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "eventType": {
+              "type": "string",
+              "enum": ["echo"],
+              "title": "eventType"
+            },
+            "message": {
+              "type": "string",
+              "title": "message"
+            }
+          },
+          "required": ["eventType", "message"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "eventType": {
+              "type": "string",
+              "enum": ["hello_world"],
+              "title": "eventType"
+            }
+          },
+          "required": ["eventType"]
         }
+      ]
     }
+  }
 }

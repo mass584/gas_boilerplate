@@ -34,7 +34,7 @@ module.exports = {
 		index: path.resolve(__dirname, 'src', 'index.ts'),
 	},
 	plugins: [
-		new Dotenv(),
+		new Dotenv({ path: '.env.development' }),
 		new Es3ifyPlugin(),
 		new GasPlugin(),
 		new webpack.ProgressPlugin(),
@@ -42,7 +42,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(ts|tsx)$/,
+				test: /.(ts|tsx)$/,
 				loader: 'ts-loader',
 				exclude: [/node_modules/]
 			},
