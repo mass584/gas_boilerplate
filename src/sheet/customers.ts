@@ -6,7 +6,7 @@ type CustomerResponse =
 
 export class CustomerSheet {
   private readonly HEADER_OFFSET = 2;
-  private readonly DATA_WIDTH = 9;
+  private readonly DATA_WIDTH = 10;
   private readonly SHEET_NAME = '顧客リスト';
   private readonly sheet: GoogleAppsScript.Spreadsheet.Sheet;
 
@@ -26,20 +26,22 @@ export class CustomerSheet {
 
   create(customer: Customer): CustomerResponse {
     const newCustomer = { id: this.getNewId(), ...customer };
-    this.sheet.appendRow([
-      [
-        newCustomer.id,
-        newCustomer.name,
-        newCustomer.gender,
-        newCustomer.tel,
-        newCustomer.email,
-        newCustomer.zip,
-        newCustomer.prefecture,
-        newCustomer.address1,
-        newCustomer.address2,
-        newCustomer.isDeleted,
-      ],
-    ]);
+    this.sheet
+      .getRange(this.sheet.getLastRow() + 1, 1, 1, this.DATA_WIDTH)
+      .setValues([
+        [
+          newCustomer.id,
+          newCustomer.name,
+          newCustomer.gender,
+          newCustomer.tel,
+          newCustomer.email,
+          newCustomer.zip,
+          newCustomer.prefecture,
+          newCustomer.address1,
+          newCustomer.address2,
+          newCustomer.isDeleted,
+        ],
+      ]);
     return { success: true, customer: newCustomer };
   }
 

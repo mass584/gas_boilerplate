@@ -50,10 +50,11 @@
     "workbox-webpack-plugin": "^5.1.3"
   },
   "scripts": {
-    "build:dev": "run-s build:json_schema build:appsscript build:dev:webpack",
-    "build:prod": "run-s build:json_schema build:appsscript build:prod:webpack",
+    "build:dev": "run-s build:json_schema build:appsscript build:html build:dev:webpack",
+    "build:prod": "run-s build:json_schema build:appsscript build:html build:prod:webpack",
     "build:json_schema": "quicktype src/doPost/requestBody.ts -o src/doPost/schema.json --lang schema",
     "build:appsscript": "cpx \"src/appsscript.json\" dist/",
+    "build:html": "cpx \"src/view/templetes/**/*\" dist/",
     "build:dev:webpack": "webpack --config webpack.dev.js",
     "build:prod:webpack": "webpack --config webpack.prod.js",
     "clean": "run-p clean:*",
