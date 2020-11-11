@@ -1,5 +1,9 @@
 # Google Apps Scriptプロジェクト用ボイラープレート
 
+## デモ
+名簿管理アプリケーションによるデモアプリ
+https://docs.google.com/spreadsheets/d/1OWQlz0oJJjt1BNB6CsHjVy7SnwWAQoWZsYDGvsXlvkg/edit#gid=1619384257
+
 ## 技術スタック
 * 言語
   - [TypeScript](https://www.typescriptlang.org/)
