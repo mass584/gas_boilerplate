@@ -7,7 +7,7 @@ type CustomerResponse =
 export class CustomerSheet {
   private readonly HEADER_OFFSET = 2;
   private readonly DATA_WIDTH = 10;
-  private readonly SHEET_NAME = '顧客リスト';
+  private readonly SHEET_NAME = 'リスト';
   private readonly sheet: GoogleAppsScript.Spreadsheet.Sheet;
 
   constructor(ss: GoogleAppsScript.Spreadsheet.Spreadsheet) {
