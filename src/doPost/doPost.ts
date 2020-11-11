@@ -1,6 +1,7 @@
 import Ajv from 'ajv';
 
 import { PostRequestBody } from '../doPost/requestBody';
+import { sayHello } from '../util/hello';
 import schema from './schema.json';
 
 export function doPost(
@@ -15,7 +16,7 @@ export function doPost(
   const message = (() => {
     switch (contents.eventType) {
       case 'hello_world':
-        return 'hello_world';
+        return sayHello();
       case 'echo':
         return contents.message;
     }

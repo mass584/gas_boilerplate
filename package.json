@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "author": "yoshimitsu.masugata <msgtysmt@gmail.com>",
   "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testMatch": [
+      "**/test/**/*.spec.ts"
+    ]
+  },
   "devDependencies": {
     "@types/ajv": "^1.0.0",
     "@types/cpx": "^1.5.1",
@@ -54,7 +62,8 @@
     "clean:copy:appsscript.json": "rimraf dist/appsscript.json",
     "clean:webpack": "rimraf dist/*.js",
     "fix": "yarn eslint --fix src/**/* ",
-    "lint": "yarn eslint src/**/*"
+    "lint": "yarn eslint src/**/*",
+    "test": "yarn jest"
   },
   "dependencies": {
     "ajv": "^6.12.5",
