@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      .modal { display: inline; background-color: rgba(255,255,255,0.8); }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container mb-2">
+      <div class="form-group">
+        <label for="name">氏名<span class="badge badge-danger">必須</span></label>
+        <input class="form-control" id="name" v-model="customer.name">
+      </div>
+      <div class="form-group col-4">
+        <label for="gender">性別<span class="badge badge-danger">必須</span></label>
+        <select class="form-control" id="gender" v-model="customer.gender">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+      <div class="form-group col-6">
+        <label for="tel">電話番号（ハイフンあり）<span class="badge badge-danger">必須</span></label>
+        <input class="form-control" id="tel" v-model="customer.tel">
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input class="form-control" id="email" v-model="customer.email">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="zip">郵便番号（ハイフンあり）<span class="badge badge-danger">必須</span></label>
+          <input class="form-control" id="zip" v-model="customer.zip">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-3">
+          <label for="prefecture">都道府県<span class="badge badge-danger">必須</span></label>
+          <select class="form-control" id="prefecture" v-model="customer.prefecture">
+            <option value="千葉県">千葉県</option>
+            <option value="東京都">東京都</option>
+            <option value="神奈川県">神奈川県</option>
+            <option value="埼玉県">埼玉県</option>
+            <option value="茨城県">茨城県</option>
+          </select>
+        </div>
+        <div class="form-group col-9">
+          <label for="address1">住所１（市区町村・番地）<span class="badge badge-danger">必須</span></label>
+          <input class="form-control" id="address1" v-model="customer.address1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address2">住所２（建物名・部屋番号）</label>
+        <input class="form-control" id="address2" v-model="customer.address2">
+      </div>
+      <div id="error" class="alert alert-danger" role="alert" v-if="error">
+        {{ error }}
+      </div>
+      <hr>
+      <button class="btn btn-primary" v-bind:disabled="loading || isInvalid" v-on:click="submit">
+        <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span v-else>保存</span>
+      </button> 
+      <button class="btn btn-secondary" v-bind:disabled="loading" v-on:click="close">
+        キャンセル
+      </button>
+      <div v-if="confirmation" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <p>追加しました。</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" v-on:click="close">閉じる</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          spreadsheetId: '<?!= spreadsheetId ?>',
+          url: '<?= url ?>',
+          customer: {
+            name: '',
+            gender: '',
+            tel: '',
+            email: '',
+            zip: '',
+            prefecture: '',
+            address1: '',
+            address2: '',
+          },
+          loading: false,
+          confirmation: false,
+          error: null,
+        },
+        computed: {
+          isInvalid: function() {
+            const isBlank = this.customer.name === '' || this.customer.gender === '' || this.customer.tel === '' || this.customer.zip === '' || this.customer.prefecture === '' || this.customer.address1 === '';
+            const isZip = /^[0-9]{3}-[0-9]{4}$/.test(this.customer.zip);
+            const isTel = /^\d{2,3}-\d{3,4}-\d{4}$/.test(this.customer.tel);
+            const isEmail = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/.test(this.customer.email) || this.customer.email === '';
+            return isBlank || !isZip || !isTel || !isEmail;
+          },
+        },
+        methods: {
+          submit: function(_event) {
+            this.loading = true;
+            fetch(this.url, {
+              method: 'POST',
+              redirect: 'follow',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: JSON.stringify({
+                spreadsheetId: this.spreadsheetId,
+                eventType: 'createCustomer',
+                customer: this.customer,
+              }),
+            }).then((response) => {
+              if (!response.ok) {
+                const error =  `エラーが発生しました。ステータス${response.status}`;
+                return Promise.reject(error);
+              }
+              return response.json();
+            }).then((json) => {
+              if (!json.result.success) {
+                const error = json.result.messages.join('¥n');
+                return Promise.reject(error);
+              }
+              this.error = null;
+              this.loading = false;
+              this.confirmation = true;
+            }).catch((error) => {
+              this.error = error;
+              this.loading = false;
+            });
+          },
+          close: function(_event) {
+            google.script.host.close();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

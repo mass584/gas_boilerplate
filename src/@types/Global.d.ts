@@ -6,7 +6,7 @@ declare namespace Global {
     doPost(
       e: WebAPI.PostEvent,
     ): GoogleAppsScript.Content.TextOutput | GoogleAppsScript.HTML.HtmlOutput;
-    main(): void;
+    createCustomer(): void;
   }
 }
 

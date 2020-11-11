@@ -1,11 +1,7 @@
 import { doGet } from './doGet/doGet';
 import { doPost } from './doPost/doPost';
+import { createCustomer } from './view/customer';
 
-function main() {
-  Logger.log('Hello World!');
-  Logger.log(process.env.FILE_ID);
-}
-
-global.main = main;
+global.createCustomer = createCustomer;
 global.doGet = doGet;
 global.doPost = doPost;
