@@ -1,6 +1,6 @@
-type Gender = '男' | '女';
+export type Gender = '男' | '女';
 
-type Prefecture =
+export type Prefecture =
   | '北海道'
   | '青森県'
   | '岩手県'
@@ -49,33 +49,15 @@ type Prefecture =
   | '鹿児島県'
   | '沖縄県';
 
-export type PostRequestBody =
-  | {
-      spreadsheetId: string;
-      eventType: 'create_customer';
-      customer: {
-        name: string;
-        gender: Gender;
-        tel: string;
-        email: string;
-        zip: string;
-        prefecture: Prefecture;
-        address1: string;
-        address2: string;
-      };
-    }
-  | {
-      spreadsheetId: string;
-      eventType: 'update_customer';
-      customerId: number;
-      customer: {
-        name: string;
-        gender: Gender;
-        tel: string;
-        email: string;
-        zip: string;
-        prefecture: Prefecture;
-        address1: string;
-        address2: string;
-      };
-    };
+export interface Customer {
+  id?: number;
+  name: string;
+  gender: Gender;
+  tel: string;
+  email: string;
+  zip: string;
+  prefecture: Prefecture;
+  address1: string;
+  address2: string;
+  isDeleted: boolean;
+}
