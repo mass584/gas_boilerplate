@@ -25,7 +25,6 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const Es3ifyPlugin = require('es3ify-webpack-plugin');
 const GasPlugin = require('gas-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
@@ -56,20 +55,5 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js']
-	},
-	optimization: {
-		minimizer: [new TerserPlugin()],
-		splitChunks: {
-			cacheGroups: {
-				vendors: {
-					priority: -10,
-					test: /[\\/]node_modules[\\/]/
-				}
-			},
-			chunks: 'async',
-			minChunks: 1,
-			minSize: 30000,
-			name: true
-		}
 	}
 };
