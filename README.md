@@ -1,44 +1,32 @@
 # Google Apps Scriptプロジェクト用ボイラープレート
 
-## プロジェクトのビルドとデプロイ
-1. `.clasp.json`を作成し、`scriptId` を設定する。
-
-2. `.env.development`もしくは`.env.production`を作成し、外部変数を設定する。
-
-3. プロジェクトのビルド
-
-```
-yarn # install package
-yarn build:dev # build for development
-yarn build:prod # build for production
-```
-
-4. ソースのアップロード
-
-```
-clasp push
-```
-
-5. アップロードしたソースコードのデプロイ
-
-WEB_APIにデプロイする場合、`-i`オプションでdeployIDを指定してください。
-
-```
-clasp deploy
-clasp deploy -i ${DEPLOY_ID}
-```
-
 ## 技術スタック
 * 言語
-  - Typescript
+  - [TypeScript](https://www.typescriptlang.org/)
 
 * コード解析+フォーマッター
-  - ESLint + Prettier
+  - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
+
+* ユニットテスト
+  - [Jest](https://jestjs.io/)
 
 * ビルド
-  - yarn
-  - webpack
+  - [yarn](https://yarnpkg.com)
+  - [webpack](https://webpack.js.org/)
+  - [dotenv](https://github.com/motdotla/dotenv)
 
-* 使用パッケージ
-  - ajv + quicktype
-  - moment.js
+* ユーティリティ
+  - [ajv](https://github.com/ajv-validator/ajv) + [quicktype](https://quicktype.io/)
+  - [moment.js](https://momentjs.com/)
+
+## NPMスクリプト一覧
+```sh
+$ yarn                   # install dependencies
+$ yarn build:dev         # build and generate the development codes
+$ yarn build:prod        # build and generate the production codes
+$ yarn fix               # fix source codes
+$ yarn lint              # lint source codes
+$ yarn test              # run the test codes using Jest framework
+$ yarn push              # push source codes
+$ yarn deploy            # deploy google apps script project
+```

@@ -61,6 +61,8 @@
     "clean:copy": "run-p clean:copy:*",
     "clean:copy:appsscript.json": "rimraf dist/appsscript.json",
     "clean:webpack": "rimraf dist/*.js",
+    "deploy": "clasp deploy",
+    "push": "clasp push",
     "fix": "yarn eslint --fix src/**/* ",
     "lint": "yarn eslint src/**/*",
     "test": "yarn jest"
