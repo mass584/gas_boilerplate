@@ -1,5 +1,6 @@
 export type PostRequestBody =
   | {
+      token: string;
       spreadsheetId: string;
       eventType: 'create_customer';
       customer: {
@@ -61,6 +62,7 @@ export type PostRequestBody =
       };
     }
   | {
+      token: string;
       spreadsheetId: string;
       eventType: 'update_customer';
       customerId: number;

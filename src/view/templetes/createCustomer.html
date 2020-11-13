@@ -85,8 +85,9 @@
       new Vue({
         el: '#app',
         data: {
-          spreadsheetId: '<?!= spreadsheetId ?>',
+          spreadsheetId: '<?= spreadsheetId ?>',
           url: '<?= url ?>',
+          token: '<?= token ?>',
           customer: {
             name: '',
             gender: '',
@@ -121,6 +122,7 @@
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
               body: JSON.stringify({
+                token: this.token,
                 spreadsheetId: this.spreadsheetId,
                 eventType: 'create_customer',
                 customer: this.customer,

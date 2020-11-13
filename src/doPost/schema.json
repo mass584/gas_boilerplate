@@ -6,6 +6,10 @@
                 {
                     "type": "object",
                     "properties": {
+                        "token": {
+                            "type": "string",
+                            "title": "token"
+                        },
                         "spreadsheetId": {
                             "type": "string",
                             "title": "spreadsheetId"
@@ -122,12 +126,17 @@
                     "required": [
                         "customer",
                         "eventType",
-                        "spreadsheetId"
+                        "spreadsheetId",
+                        "token"
                     ]
                 },
                 {
                     "type": "object",
                     "properties": {
+                        "token": {
+                            "type": "string",
+                            "title": "token"
+                        },
                         "spreadsheetId": {
                             "type": "string",
                             "title": "spreadsheetId"
@@ -249,7 +258,8 @@
                         "customer",
                         "customerId",
                         "eventType",
-                        "spreadsheetId"
+                        "spreadsheetId",
+                        "token"
                     ]
                 }
             ]

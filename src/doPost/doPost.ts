@@ -13,9 +13,17 @@ export function doPost(
   if (!isValid(e.postData.contents)) {
     return ContentService.createTextOutput()
       .setMimeType(ContentService.MimeType.JSON)
-      .setContent(JSON.stringify({ message: 'リクエストの形式が誤っています' }));
+      .setContent(JSON.stringify({ status: 400, message: 'リクエストの形式が誤っています' }));
   }
   const contents = JSON.parse(e.postData.contents) as PostRequestBody;
+  const token = Utilities.base64Encode(
+    `${process.env.BASIC_AUTH_USERNAME}:${process.env.BASIC_AUTH_PASSWORD}`,
+  );
+  if (contents.token !== token) {
+    return ContentService.createTextOutput()
+      .setMimeType(ContentService.MimeType.JSON)
+      .setContent(JSON.stringify({ status: 401, message: '認証トークンが誤っています' }));
+  }
   const datetime = moment();
   const ss = SpreadsheetApp.openById(contents.spreadsheetId);
   const response: Response = (() => {
