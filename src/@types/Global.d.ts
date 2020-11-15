@@ -7,6 +7,7 @@ declare namespace Global {
       e: WebAPI.PostEvent,
     ): GoogleAppsScript.Content.TextOutput | GoogleAppsScript.HTML.HtmlOutput;
     createCustomer(): void;
+    updateCustomer(): void;
   }
 }
 
