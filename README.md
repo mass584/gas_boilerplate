@@ -1,8 +1,7 @@
 # Google Apps Scriptプロジェクト用ボイラープレート
 
 ## デモ
-名簿管理アプリケーションによるデモアプリ
-https://docs.google.com/spreadsheets/d/1OWQlz0oJJjt1BNB6CsHjVy7SnwWAQoWZsYDGvsXlvkg/edit#gid=1619384257
+* [[業務向け]名簿管理アプリ](https://docs.google.com/spreadsheets/d/1OWQlz0oJJjt1BNB6CsHjVy7SnwWAQoWZsYDGvsXlvkg/edit#gid=1619384257)
 
 ## 技術スタック
 * 言語
